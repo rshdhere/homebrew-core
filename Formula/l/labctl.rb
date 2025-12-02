@@ -8,7 +8,8 @@ class Labctl < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", *std_go_args, "-mod=readonly"
+    ENV["GOPROXY"] = "off"
+    system "go", "build", *std_go_args, "-mod=vendor"
   end
 
   test do
